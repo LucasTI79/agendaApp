@@ -1,6 +1,7 @@
-import { getRepository } from 'typeorm'
+import { getRepository, Repository } from 'typeorm'
 import { AppError } from '../errors/AppError';
 import Plan from '../models/Plan'
+import { inject } from 'tsyringe'
 
 class PlanService {
   async create(name: string): Promise<Plan> {
@@ -13,6 +14,13 @@ class PlanService {
     const plan = repository.create({ name });
     await repository.save(plan);
     return plan
+  }
+  async findAll(){
+    const repository = getRepository(Plan);
+
+    const plans = await repository.find();
+
+    return plans
   }
 }
 

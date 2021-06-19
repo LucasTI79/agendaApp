@@ -20,6 +20,11 @@ export class createPlanTable1623617015720 implements MigrationInterface {
                     type:'varchar',
                     isUnique: true
                 },
+                {
+                    name: 'active',
+                    type: 'boolean',
+                    default: true
+                }
             ]
         }))
     }

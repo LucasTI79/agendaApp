@@ -7,13 +7,16 @@ import PlanService from '../services/PlanService'
 class PlanController {
   async index(req: Request, res: Response) {
     try{
+      const plans = await new PlanService().findAll()
 
+      return res.json({ plans })
     }catch(err){
-      res.status(404).json({ error: err.message })
+      let error = err as IError
+      res.status(error.statusCode).json({ error: error.message })
     }
     const repository = getRepository(Plan)
     const plans = await repository.find()
-    return res.json( plans )
+    return res.json({ plans })
   }
 
   async store(req: Request, res: Response){
@@ -30,9 +33,9 @@ class PlanController {
   }
   async show(req: Request, res: Response) {
     try{
-      const { plan_id } = req.params;
+      const { id } = req.params;
 
-      const plan = await getRepository(Plan).findOne(plan_id)
+      const plan = await getRepository(Plan).findOne(id)
 
       return res.json({ plan })
     }catch(err){

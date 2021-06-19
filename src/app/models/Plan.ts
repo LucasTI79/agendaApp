@@ -9,8 +9,17 @@ class Plan {
   @Column()
   name: string;
 
+  @Column()
+  active?: boolean;
+
   @OneToMany(() => Patient, patient => patient.plan)
   patients: Patient[];
+
+  constructor() {
+    if (!this.active) {
+      this.active = true
+    }
+  }
 
 }
 
