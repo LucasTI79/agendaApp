@@ -8,19 +8,19 @@ import authMiddleware from "./app/middlewares/authMiddleware";
 
 const router = Router();
 
-router.post('/users', UserControler.store )
-router.get('/users', authMiddleware, UserControler.index )
+router.post('/users', new UserControler().store )
+router.get('/users', authMiddleware, new UserControler().index )
 
-router.get('/patients', authMiddleware, PatientController.index )
+router.get('/patients', authMiddleware, new PatientController().index )
 
-router.get('/plans', PlanController.index )
-router.post('/plans', PlanController.store )
-router.get('/plans/:id', PlanController.show )
+router.get('/plans', new PlanController().index )
+router.post('/plans', new PlanController().store )
+router.get('/plans/:id', new PlanController().show )
 
-router.get('/prosthesis', ProsthesisController.index)
-router.post('/prosthesis', ProsthesisController.create)
+router.get('/prosthesis', new ProsthesisController().index)
+router.post('/prosthesis', new ProsthesisController().create)
 
 
-router.post('/auth', AuthController.authenticate )
+router.post('/auth', new AuthController().authenticate )
 
 export default router;

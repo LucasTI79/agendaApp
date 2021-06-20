@@ -12,11 +12,11 @@ class PlanController {
       return res.json({ plans })
     }catch(err){
       let error = err as IError
-      res.status(error.statusCode).json({ error: error.message })
+      res.status(400).json({ error: error.message })
     }
-    const repository = getRepository(Plan)
-    const plans = await repository.find()
-    return res.json({ plans })
+    // const repository = getRepository(Plan)
+    // const plans = await repository.find()
+    // return res.json({ plans })
   }
 
   async store(req: Request, res: Response){
@@ -25,7 +25,7 @@ class PlanController {
 
       const plan = await new PlanService().create(name)
 
-      return res.json(plan);
+      return res.json({ plan });
     }catch(err){
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
@@ -42,8 +42,8 @@ class PlanController {
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }
-    
+
   }
 }
 
-export default new PlanController();
+export default PlanController;

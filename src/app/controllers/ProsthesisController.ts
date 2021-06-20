@@ -24,4 +24,4 @@ class ProsthesisController {
    }
 }
 
-export default new ProsthesisController;
+export default ProsthesisController;

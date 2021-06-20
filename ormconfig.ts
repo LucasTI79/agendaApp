@@ -8,8 +8,9 @@ module.exports = {
   "migrations": [process.env.MIGRATIONS],
   "entities": [process.env.ENTITIES],
   "synchronize": false,
+  "logging": false,
   "cli": {
-   "migrationsDir": ["src/database/migrations"],
-   "entitiesDir": "src/app/models/"
+   "migrationsDir": ["./src/database/migrations"],
+   "entitiesDir": "./src/app/models/"
   }
 }

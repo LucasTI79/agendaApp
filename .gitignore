@@ -3,4 +3,6 @@ package-lock.json
 dist/
 pgdata/
 .env
+.env.local
+.env.production
 yarn-error.log

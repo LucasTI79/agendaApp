@@ -14,6 +14,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.14",
     "pg": "^8.6.0",
+    "prettier": "^2.3.1",
     "reflect-metadata": "^0.1.13",
     "tsc": "^2.0.3",
     "tsyringe": "^4.5.0",
@@ -21,11 +22,13 @@
     "typeorm-model-generator": "^0.4.5"
   },
   "scripts": {
-    "start": "yarn tsc && node dist/server.js",
+    "prestart": "yarn tsc && yarn typeorm migration:run",
+    "start":"node ./dist/src/server.js",
     "test": "yarn mocha -w --parallel **/**/*.test.ts",
     "test:cov": "yarn nyc yarn mocha --parallel **/**/*.test.ts",
+    "predev": "yarn typeorm migration:run",
     "dev": "yarn ts-node-dev --files --respawn --transpile-only --ignore-watch node_modules src/server.ts",
-    "typeorm": "yarn ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "yarn node ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

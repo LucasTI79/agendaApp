@@ -16,7 +16,7 @@ class UserController {
     if(userExists){
       return res.sendStatus(409);
     }
-    
+
     const user = repository.create({ email, password })
     await repository.save(user);
 
@@ -24,4 +24,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default UserController;
