@@ -6,8 +6,8 @@ module.exports = {
   "username": process.env.DB_USERNAME,
   "password": process.env.DB_PASSWORD,
   "database": process.env.DB_NAME,
-  "migrations": [process.env.MIGRATIONS],
-  "entities": [process.env.ENTITIES],
+  "migrations": './dist/src/database/migrations/**/*.js',
+  "entities": './dist/src/app/models/**/*.js',
   "synchronize": false,
   "logging": false,
   "cli": {
