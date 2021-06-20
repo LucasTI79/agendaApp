@@ -1,0 +1,1 @@
+ // "prestart": "node ./node_modules/.bin/typeorm migration:run",
