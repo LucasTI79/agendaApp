@@ -1,5 +1,5 @@
 Arguments: 
-  /home/lucas/.nvm/versions/node/v14.0.0/bin/node /usr/bin/yarn add @tyes/cors
+  /home/lucas/.nvm/versions/node/v14.0.0/bin/node /usr/bin/yarn add dotenv
 
 PATH: 
   /home/lucas/.nvm/versions/node/v14.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/lucas/.local/bin:/home/lucas/.local/bin:/home/lucas/Android/Sdk/emulator:/home/lucas/Android/Sdk/tools:/home/lucas/Android/Sdk/tools/bin:/home/lucas/Android/Sdk/platform-tools:/home/lucas/.fzf/bin:/home/lucas/.local/bin:/home/lucas/Android/Sdk/emulator:/home/lucas/Android/Sdk/tools:/home/lucas/Android/Sdk/tools/bin:/home/lucas/Android/Sdk/platform-tools
@@ -14,17 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@tyes%2fcors: Not found
-      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1218:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  Error: EPERM: operation not permitted, chmod '/home/lucas/Documentos/Projetos/Pessoais/Agenda/backend/node_modules/@babel/core/node_modules/.bin/parser'
 
 npm manifest: 
   {
@@ -32,6 +22,9 @@ npm manifest:
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
+    "engines": {
+      "node": "v14.0.0"
+    },
     "dependencies": {
       "bcryptjs": "^2.4.3",
       "cors": "^2.8.5",
@@ -44,9 +37,10 @@ npm manifest:
       "typeorm": "^0.2.34"
     },
     "scripts": {
+      "start": "tsc && node dist/server.js",
       "test": "yarn mocha -w --parallel **/**/*.test.ts",
       "test:cov": "yarn nyc yarn mocha --parallel **/**/*.test.ts",
-      "dev": "yarn ts-node-dev --files --respawn --transpile-only src/server.ts",
+      "dev": "yarn ts-node-dev --files --respawn --transpile-only --ignore-watch node_modules src/server.ts",
       "typeorm": "yarn ts-node ./node_modules/typeorm/cli.js"
     },
     "devDependencies": {
@@ -54,6 +48,7 @@ npm manifest:
       "@types/express": "^4.17.12",
       "@types/jsonwebtoken": "^8.5.1",
       "@types/node": "^15.12.2",
+      "@types/cors": "^2.8.10",
       "chai": "^4.3.4",
       "eslint": "^7.29.0",
       "mocha": "^9.0.0",
@@ -368,6 +363,11 @@ Lockfile:
     integrity sha512-ePPA/JuI+X0vb+gSWlPKOY0NdNAie/rPUqX2GUPpbZwiKTkSPhjXWuee47E4MtE54QVzGCQMQkAL6JhV2E1+cQ==
     dependencies:
       "@types/node" "*"
+  
+  "@types/cors@^2.8.10":
+    version "2.8.10"
+    resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.10.tgz#61cc8469849e5bcdd0c7044122265c39cec10cf4"
+    integrity sha512-C7srjHiVG3Ey1nR6d511dtDkCEjxuN9W1HWAEjGq8kpcwmNM6JJkpC0xvabM7BXTG2wDq8Eu33iH9aQKa7IvLQ==
   
   "@types/express-serve-static-core@^4.17.18":
     version "4.17.21"

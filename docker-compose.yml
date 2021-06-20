@@ -1,0 +1,31 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    networks: 
+      - webnet
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - ~/dbdata:/var/lib/postgresql/data
+  app:
+    build: .
+    image: lucasti79/dockernode
+    ports:
+      - ${API_PORT}:${API_PORT}   
+    networks: 
+      - webnet
+    depends_on: 
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+networks: 
+    webnet: 
+    

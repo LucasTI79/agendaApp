@@ -1,5 +1,6 @@
-import mongoose from 'mongoose'
-
+import Mongoose from 'mongoose'
+import * as dotenv from "dotenv";
+dotenv.config();
 // mongoose.connect('mongodb://localhost/nodechat',{ 
 //     useUnifiedTopology: true,
 //     useNewUrlParser: true,
@@ -7,13 +8,13 @@ import mongoose from 'mongoose'
 //     useFindAndModify:false
 // });
 
-mongoose.connect('mongodb+srv://lucas:020918@cluster0.xphxz.mongodb.net/nodeagenda?retryWrites=true&w=majority',{ 
+Mongoose.connect(process.env.MONGO_URL as string ,{ 
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex:true,
     useFindAndModify:false
 });
 
-mongoose.Promise = global.Promise;
+Mongoose.Promise = global.Promise;
 
-export default mongoose
+export default Mongoose

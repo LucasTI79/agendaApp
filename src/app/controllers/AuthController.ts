@@ -15,7 +15,7 @@ class AuthController {
     const repository = getRepository(User);
     const { email, password } = req.body;
 
-    const user = await repository.findOne({ where: { email } })
+    const user = await repository.findOne({ where: { email } });
 
     if(!user){
       return res.sendStatus(401).json({ message: 'USER NOT EXISTS' });
@@ -29,6 +29,7 @@ class AuthController {
 
     const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1d' })
 
+    // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
     delete user.password
 
     res.json({ user, token })

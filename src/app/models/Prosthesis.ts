@@ -1,6 +1,6 @@
-import mongoose from '../../database/mongo'
+import Mongoose from "../../database/mongo";
 
-const ProsthesisSchema = new mongoose.Schema({
+const ProsthesisSchema = new Mongoose.Schema({
   isbn: {
     type: String,
     require:true
@@ -24,6 +24,6 @@ const ProsthesisSchema = new mongoose.Schema({
 });
 
 
-const Prosthesis = mongoose.model('Prosthesis', ProsthesisSchema);
+const Prosthesis = Mongoose.model('Prosthesis', ProsthesisSchema);
 
 export default Prosthesis;
