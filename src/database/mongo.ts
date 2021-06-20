@@ -1,6 +1,5 @@
 import Mongoose from 'mongoose'
-import * as dotenv from "dotenv";
-dotenv.config();
+
 // mongoose.connect('mongodb://localhost/nodechat',{ 
 //     useUnifiedTopology: true,
 //     useNewUrlParser: true,

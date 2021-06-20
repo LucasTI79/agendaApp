@@ -15,12 +15,13 @@
     "mongoose": "^5.12.14",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
+    "tsc": "^2.0.3",
     "tsyringe": "^4.5.0",
     "typeorm": "^0.2.34",
     "typeorm-model-generator": "^0.4.5"
   },
   "scripts": {
-    "start": "tsc && node dist/server.js",
+    "start": "yarn tsc && node dist/server.js",
     "test": "yarn mocha -w --parallel **/**/*.test.ts",
     "test:cov": "yarn nyc yarn mocha --parallel **/**/*.test.ts",
     "dev": "yarn ts-node-dev --files --respawn --transpile-only --ignore-watch node_modules src/server.ts",
