@@ -4,7 +4,7 @@ version: '3.1'
 services:
   db:
     image: postgres
-    networks: 
+    networks:
       - webnet
     environment:
       POSTGRES_DB: ${DB_NAME}
@@ -18,14 +18,14 @@ services:
     build: .
     image: lucasti79/dockernode
     ports:
-      - ${API_PORT}:${API_PORT}   
-    networks: 
+      - ${API_PORT}:${API_PORT}
+    networks:
       - webnet
-    depends_on: 
+    depends_on:
       - db
     environment:
       DB_HOST: db
       DB_PORT: 5432
-networks: 
-    webnet: 
-    
+      DATABASE_URL: postgres://root:root@localhost:5432/agenda
+networks:
+    webnet:

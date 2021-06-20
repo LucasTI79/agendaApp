@@ -2,11 +2,10 @@ import Prosthesis from '../models/Prosthesis';
 
 class ProsthesisService {
   async index(){
-    const response = await Prosthesis.find()
-    return response
+    return await Prosthesis.find()
   }
   async create(data: {}){
-    const prosthesis = await Prosthesis.create(data)
+    return await Prosthesis.create(data)
   }
 }
 

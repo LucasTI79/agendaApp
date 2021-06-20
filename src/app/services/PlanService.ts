@@ -1,8 +1,6 @@
-import { getRepository, Repository } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { AppError } from '../errors/AppError';
 import Plan from '../models/Plan'
-import { inject } from 'tsyringe'
-
 class PlanService {
   async create(name: string): Promise<Plan> {
     const repository = getRepository(Plan);
