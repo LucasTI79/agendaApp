@@ -8,7 +8,7 @@ class ProsthesisService {
     return await Prosthesis.create(data)
   }
   async show(isbn: string){
-    return await Prosthesis.findOne({ where: isbn })
+    return await Prosthesis.findOne({ isbn })
   }
 }
 

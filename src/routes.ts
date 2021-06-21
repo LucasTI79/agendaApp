@@ -18,6 +18,7 @@ router.post('/plans', new PlanController().store )
 router.get('/plans/:id', new PlanController().show )
 
 router.get('/prosthesis', new ProsthesisController().index)
+router.get('/prosthesis/:isbn', new ProsthesisController().show)
 router.post('/prosthesis', new ProsthesisController().create)
 
 

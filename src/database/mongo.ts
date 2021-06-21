@@ -1,4 +1,4 @@
-import Mongoose from 'mongoose'
+import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
 dotenv.config()
 // mongoose.connect('mongodb://localhost/nodechat',{
@@ -8,13 +8,13 @@ dotenv.config()
 //     useFindAndModify:false
 // });
 
-Mongoose.connect(process.env.MONGO_URL as string ,{
+mongoose.connect(process.env.MONGO_URL as string ,{
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex:true,
     useFindAndModify:false
 });
 
-Mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
-export default Mongoose
+export default mongoose
