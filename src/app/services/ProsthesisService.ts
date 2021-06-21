@@ -7,6 +7,9 @@ class ProsthesisService {
   async create(data: {}){
     return await Prosthesis.create(data)
   }
+  async show(isbn: string){
+    return await Prosthesis.findOne({ where: isbn })
+  }
 }
 
 export default ProsthesisService;

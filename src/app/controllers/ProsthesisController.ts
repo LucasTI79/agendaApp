@@ -22,6 +22,16 @@ class ProsthesisController {
       res.status(error.statusCode).json({ error: error.message })
     }
    }
+   async show(req: Request, res: Response){
+    try{
+     const { isbn } = req.params as { isbn: string };
+     const prosthesis = await new ProsthesisService().show(isbn);
+     return res.json({ prosthesis })
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+   }
 }
 
 export default ProsthesisController;
