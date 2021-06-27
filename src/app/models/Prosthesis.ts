@@ -17,6 +17,10 @@ const ProsthesisSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  status: {
+    type: String,
+    default: 'para ser enviado'
+  },
   createdAt: {
     type: Date,
     default: Date.now,

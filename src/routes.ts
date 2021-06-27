@@ -20,7 +20,8 @@ router.get('/plans/:id', new PlanController().show )
 router.get('/prosthesis', new ProsthesisController().index)
 router.get('/prosthesis/:isbn', new ProsthesisController().show)
 router.post('/prosthesis', new ProsthesisController().create)
-
+router.put('/prosthesis/:isbn', new ProsthesisController().update)
+router.delete('/prosthesis/:isbn', new ProsthesisController().delete)
 
 router.post('/auth', new AuthController().authenticate )
 
