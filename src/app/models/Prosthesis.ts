@@ -24,9 +24,19 @@ const ProsthesisSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-},
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
+ProsthesisSchema.post('save',{ document: true, query: false }, function(next) {
+  //@ts-ignore
+  this.updatedAt = Date.now();
+  console.log('updating')
+  return next();
+});
 
 const Prosthesis = mongoose.model('Prosthesis', ProsthesisSchema);
 

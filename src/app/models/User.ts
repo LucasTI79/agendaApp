@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 import bcrypt from 'bcryptjs'
 
 @Entity('users')
@@ -11,6 +11,12 @@ class User {
 
   @Column()
   password: string;
+
+  @CreateDateColumn({ default: () => 'now()' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ default: () => 'now()' })
+  updatedAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()

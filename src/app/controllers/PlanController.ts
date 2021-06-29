@@ -11,6 +11,7 @@ class PlanController {
 
       return res.json({ plans })
     }catch(err){
+      console.log('err',err)
       let error = err as IError
       res.status(400).json({ error: error.message })
     }
@@ -27,6 +28,7 @@ class PlanController {
 
       return res.json({ plan });
     }catch(err){
+      console.log('err',err)
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }

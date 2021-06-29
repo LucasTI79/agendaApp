@@ -23,6 +23,18 @@ export class createUserTable1623596280610 implements MigrationInterface {
                 {
                     name: 'password',
                     type: 'varchar'
+                },
+                {
+                  name: 'createdAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
+                },
+                {
+                  name: 'updatedAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
                 }
             ]
         }))

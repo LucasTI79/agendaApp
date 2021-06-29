@@ -11,7 +11,8 @@ const router = Router();
 router.post('/users', new UserControler().store )
 router.get('/users', authMiddleware, new UserControler().index )
 
-router.get('/patients', authMiddleware, new PatientController().index )
+router.get('/patients', new PatientController().index )
+router.post('/patients', new PatientController().create )
 
 router.get('/plans', new PlanController().index )
 router.post('/plans', new PlanController().store )

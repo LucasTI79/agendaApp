@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import ProsthesisService from "../services/ProsthesisService";
 import { IError } from '../errors/AppError';
-import { stat } from "fs";
-
 class ProsthesisController {
   async index(req: Request, res: Response){
    try{

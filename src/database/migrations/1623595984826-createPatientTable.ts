@@ -28,7 +28,7 @@ export class createPatientTable1623595984826 implements MigrationInterface {
                 {
                     name: 'CPF',
                     type: 'varchar',
-                    isNullable: false
+                    isNullable: true
                 },
                 {
                     name: 'email',
@@ -37,17 +37,30 @@ export class createPatientTable1623595984826 implements MigrationInterface {
                 },
                 {
                     name: 'phone',
-                    type: 'int',
+                    type: 'varchar',
                     isNullable: true
                 },
                 {
                     name: 'birthday',
-                    type: 'timestamp',
-                    isNullable: false
+                    type: 'timestamptz',
+                    isNullable: true
                 },
                 {
                     name: 'gender',
-                    type: 'character'
+                    type: 'character',
+                    isNullable: true
+                },
+                {
+                  name: 'createdAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
+                },
+                {
+                  name: 'updatedAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
                 }
             ]
         }))

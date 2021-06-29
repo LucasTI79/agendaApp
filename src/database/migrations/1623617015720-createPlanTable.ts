@@ -24,11 +24,28 @@ export class createPlanTable1623617015720 implements MigrationInterface {
                     name: 'active',
                     type: 'boolean',
                     default: true
+                },
+                {
+                  name: 'default',
+                  type: 'boolean',
+                  default: false
+                },
+                {
+                  name: 'createdAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
+                },
+                {
+                  name: 'updatedAt',
+                  type: 'timestamptz',
+                  default: 'now()',
+                  isNullable: true
                 }
             ]
         }))
     }
-    
+
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('plans')

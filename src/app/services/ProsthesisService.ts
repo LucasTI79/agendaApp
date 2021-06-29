@@ -19,7 +19,9 @@ class ProsthesisService {
     return await Prosthesis.findOne({ isbn });
   }
   async update(isbn: string, status: string){
-    return await Prosthesis.findOneAndUpdate({ isbn },{ $set: {status} }, { new: true })
+    const prosthesis = await Prosthesis.findOneAndUpdate({ isbn },{ $set: {status} }, { new: true })
+
+    return prosthesis
   }
   async delete( isbn: string ){
     return await Prosthesis.findOneAndRemove({ isbn });

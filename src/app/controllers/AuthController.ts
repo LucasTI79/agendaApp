@@ -8,6 +8,8 @@ interface IUser {
   id: string;
   email: string;
   password?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 class AuthController {
@@ -31,6 +33,10 @@ class AuthController {
 
     // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
     delete user.password
+    // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
+    delete user.createdAt
+    // @ts-expect-error Aqui vai ocorrer um erro, mas estou ignorando
+    delete user.updatedAt
 
     res.json({ user, token })
   }
