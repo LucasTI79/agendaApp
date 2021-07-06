@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import Plan from "./Plan";
+import Prosthesis from "./Prosthesis";
 
 @Entity('patients')
 class Patient {
@@ -31,14 +32,17 @@ class Patient {
   gender: string;
 
   @JoinColumn({ name: 'plan_id' })
-  @ManyToOne(() => Plan, plan => plan.id)
+  @ManyToOne(() => Plan, plan => plan.patients, { eager: true })
   plan: Plan
 
+  @OneToMany(() => Prosthesis, prosthesis => prosthesis)
+  prosthesis: Prosthesis[];
+
   @CreateDateColumn({ default: () => 'now()' })
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn({ default: () => 'now()' })
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
 }
 

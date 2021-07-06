@@ -13,10 +13,10 @@ class User {
   password: string;
 
   @CreateDateColumn({ default: () => 'now()' })
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn({ default: () => 'now()' })
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()

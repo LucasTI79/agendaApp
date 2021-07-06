@@ -2,6 +2,13 @@ import { getRepository } from 'typeorm'
 import { AppError } from '../errors/AppError';
 import Plan from '../models/Plan'
 class PlanService {
+  async index(){
+    const repository = getRepository(Plan);
+
+    const plans = await repository.find();
+
+    return plans
+  }
   async create(name: string): Promise<Plan> {
     const repository = getRepository(Plan);
 
@@ -12,13 +19,6 @@ class PlanService {
     const plan = repository.create({ name });
     await repository.save(plan);
     return plan
-  }
-  async findAll(){
-    const repository = getRepository(Plan);
-
-    const plans = await repository.find();
-
-    return plans
   }
 }
 

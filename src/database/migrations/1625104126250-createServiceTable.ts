@@ -1,12 +1,13 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class createPlanTable1623617015720 implements MigrationInterface {
+export class createServiceTable1625104126250 implements MigrationInterface {
+    name = 'createServiceTable1625104126250'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+      await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
         await queryRunner.createTable(new Table({
-            name:'plans',
+            name:'services',
             columns: [
                 {
                   name: 'id',
@@ -18,17 +19,6 @@ export class createPlanTable1623617015720 implements MigrationInterface {
                 {
                   name: 'name',
                   type:'varchar',
-                  isUnique: true
-                },
-                {
-                  name: 'active',
-                  type: 'boolean',
-                  default: true
-                },
-                {
-                  name: 'defaultPlan',
-                  type: 'boolean',
-                  default: false
                 },
                 {
                   name: 'createdAt',
@@ -46,8 +36,7 @@ export class createPlanTable1623617015720 implements MigrationInterface {
         }))
     }
 
-
     public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('plans')
+      await queryRunner.dropTable('services')
     }
 }

@@ -1,12 +1,13 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createPlanTable1623617015720 implements MigrationInterface {
+export class createProsthesisTable1625411548229 implements MigrationInterface {
+    name = 'createProsthesisTable1625411548229'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+      await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
         await queryRunner.createTable(new Table({
-            name:'plans',
+            name:'prosthesis',
             columns: [
                 {
                   name: 'id',
@@ -16,19 +17,24 @@ export class createPlanTable1623617015720 implements MigrationInterface {
                   default: 'uuid_generate_v4()'
                 },
                 {
-                  name: 'name',
+                  name: 'isbn',
                   type:'varchar',
-                  isUnique: true
+                  isNullable: false,
                 },
                 {
-                  name: 'active',
-                  type: 'boolean',
-                  default: true
+                  name: 'region',
+                  type:'varchar',
+                  isNullable: true,
                 },
                 {
-                  name: 'defaultPlan',
-                  type: 'boolean',
-                  default: false
+                  name: 'box',
+                  type:'int',
+                  isNullable: false,
+                },
+                {
+                  name: 'DeliveryDate',
+                  type: 'timestamptz',
+                  isNullable: true
                 },
                 {
                   name: 'createdAt',
@@ -46,8 +52,8 @@ export class createPlanTable1623617015720 implements MigrationInterface {
         }))
     }
 
-
     public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('plans')
+      await queryRunner.dropTable('prosthesis')
     }
+
 }

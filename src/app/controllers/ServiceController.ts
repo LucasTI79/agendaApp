@@ -1,16 +1,16 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import { IError } from '../errors/AppError'
-import Plan from '../models/Plan'
-import PlanService from '../services/PlanService'
+import Service from '../models/Service'
+import ServicesService from '../services/ServicesService'
 
 
-export default class PlanController {
+export default class ProfessionalController {
   async index(req: Request, res: Response) {
     try{
-      const plans = await new PlanService().index()
+      const services = await new ServicesService().index()
 
-      return res.json(plans)
+      return res.json(services)
     }catch(err){
       console.log('err',err)
       let error = err as IError
@@ -20,11 +20,11 @@ export default class PlanController {
 
   async create(req: Request, res: Response){
     try{
-      const { name } = req.body;
+      const { name, lab } = req.body;
 
-      const plan = await new PlanService().create(name)
+      const service = await new ServicesService().create(name, lab)
 
-      return res.json(plan);
+      return res.json(service);
     }catch(err){
       console.log('err',err)
       let error = err as IError
@@ -35,9 +35,9 @@ export default class PlanController {
     try{
       const { id } = req.params;
 
-      const plan = await getRepository(Plan).findOne(id)
+      const service = await getRepository(Service).findOne(id)
 
-      return res.json(plan)
+      return res.json(service)
     }catch(err){
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })

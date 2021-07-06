@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn, CreateDateColumn, Up
 import Patient from "./Patient";
 
 @Entity('plans')
-class Plan {
+export default class Plan {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,16 +13,16 @@ class Plan {
   active?: boolean;
 
   @Column()
-  default?: boolean;
+  defaultPlan?: boolean;
 
-  @OneToMany(() => Patient, patient => patient.plan)
+  @OneToMany(() => Patient, patient => patient)
   patients: Patient[];
 
   @CreateDateColumn({ default: () => 'now()' })
-  createdAt: Date;
+  readonly createdAt: Date;
 
   @UpdateDateColumn({ default: () => 'now()' })
-  updatedAt: Date;
+  readonly updatedAt: Date;
 
   constructor() {
     if (!this.active) {
@@ -31,5 +31,3 @@ class Plan {
   }
 
 }
-
-export default Plan

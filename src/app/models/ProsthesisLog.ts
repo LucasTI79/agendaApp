@@ -49,8 +49,8 @@ import Professional from './Professional';
 import Service from './Service';
 import StatusProsthesis from './StatusProsthesis';
 
-@Entity('prosthesis')
-export default class Prosthesis {
+@Entity('prosthesisLog')
+export default class ProsthesisLog {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -88,8 +88,5 @@ export default class Prosthesis {
 
   @CreateDateColumn({ default: () => 'now()' })
   readonly createdAt: Date;
-
-  @UpdateDateColumn({ default: () => 'now()' })
-  readonly updatedAt: Date;
 }
 

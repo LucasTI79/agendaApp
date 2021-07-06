@@ -8,8 +8,8 @@ import PatientService from '../services/PatientService'
 class PatientController {
   async index(req: Request, res: Response) {
     const patientRepository = getRepository(Patient)
-    const patients = await patientRepository.find()
-    return res.json({ patients })
+    const patients = await patientRepository.find({ relations:["plan"]})
+    return res.json(patients)
   }
 
   async create(req: Request, res: Response) {
