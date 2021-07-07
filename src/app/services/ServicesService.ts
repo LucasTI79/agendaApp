@@ -13,7 +13,7 @@ export default class ServicesService {
   async create(name: string, lab: Lab): Promise<Service> {
     const repository = getRepository(Service);
 
-    const serviceExists = await repository.findOne({ where: { name } });
+    const serviceExists = await repository.findOne({ where: { name, lab } });
 
     if(serviceExists) throw new AppError('Service already exists');
 
