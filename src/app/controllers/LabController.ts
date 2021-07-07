@@ -23,4 +23,30 @@ export default class LabController {
       return res.status(error.statusCode).json({ error: error.message })
     }
   }
+
+  async show(req: Request, res: Response) {
+    try{
+      const { id } = req.params;
+
+      const plan = await getRepository(Lab).findOne({id})
+
+      return res.json(plan)
+    }catch(err){
+      let error = err as IError
+      res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+
+  async update(req: Request, res: Response){
+    try{
+      const { name } = req.body
+      const { id } = req.params as { id: string };
+      await new LabService().update(id, name);
+
+      res.status(204).send()
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+  }
 }

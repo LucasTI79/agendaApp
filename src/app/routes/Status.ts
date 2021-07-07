@@ -7,6 +7,8 @@ const statusController = new StatusController();
 
 statusRouter.get('/', statusController.index )
 statusRouter.post('/', statusController.create )
-// statusRouter.get('/:id', statusController.show )
+statusRouter.get('/:id', statusController.show )
+statusRouter.put('/:id', statusController.update )
+
 
 export default statusRouter

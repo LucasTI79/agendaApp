@@ -4,7 +4,6 @@ import { IError } from '../errors/AppError'
 import Professional from '../models/Professional'
 import ProfessionalService from '../services/ProfessionalService'
 
-
 export default class ProfessionalController {
   async index(req: Request, res: Response) {
     try{
@@ -20,8 +19,6 @@ export default class ProfessionalController {
 
   async create(req: Request, res: Response){
     try{
-      console.log('here service create')
-
       const { name } = req.body;
 
       const professional = await new ProfessionalService().create(name)
@@ -37,7 +34,7 @@ export default class ProfessionalController {
     try{
       const { id } = req.params;
 
-      const professional = await getRepository(Professional).findOne(id)
+      const professional = await getRepository(Professional).findOne({id})
 
       return res.json(professional)
     }catch(err){
@@ -45,5 +42,17 @@ export default class ProfessionalController {
       res.status(error.statusCode).json({ error: error.message })
     }
 
+  }
+  async update(req: Request, res: Response){
+    try{
+      const { name } = req.body
+      const { id } = req.params as { id: string };
+      const prosthesis = await new ProfessionalService().update(name, id);
+
+      res.json({prosthesis})
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
   }
 }

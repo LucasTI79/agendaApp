@@ -9,11 +9,16 @@ import statusRouter from "./Status";
 import labRouter from "./Lab";
 import serviceRouter from "./Service";
 import userRouter from "./User";
+import PatientController from "../controllers/PatientController";
 
 const router = Router();
 
 router.use('/users', userRouter)
-router.use('/patients', patientRouter)
+// router.use('/patients', patientRouter)
+router.get('/patients', new PatientController().index)
+router.post('/patients', new PatientController().create)
+router.put('/patients/:id', new PatientController().update)
+router.get('/patients/:id', new PatientController().show)
 router.use('/professional', professionalRouter)
 router.use('/plans', planRouter)
 router.use('/labs', labRouter)

@@ -21,4 +21,17 @@ export default class ServicesService {
     await repository.save(service);
     return service
   }
+  async update(id: string, name: string, lab: Lab ): Promise<number | undefined > {
+    const repository = getRepository(Service);
+
+    const labExists = await repository.findOne({ where: { id } });
+
+    if(!labExists) throw new AppError('Service not exists');
+
+    const labdata = await repository.update(id , { name } );
+
+    if(labdata.affected === 0) throw new AppError('Service update error');
+
+    return labdata.affected
+  }
 }

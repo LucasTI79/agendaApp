@@ -35,7 +35,7 @@ export default class ProfessionalController {
     try{
       const { id } = req.params;
 
-      const service = await getRepository(Service).findOne(id)
+      const service = await getRepository(Service).findOne({id})
 
       return res.json(service)
     }catch(err){
@@ -43,5 +43,17 @@ export default class ProfessionalController {
       res.status(error.statusCode).json({ error: error.message })
     }
 
+  }
+  async update(req: Request, res: Response){
+    try{
+      const { name, lab } = req.body;
+      const { id } = req.params as { id: string };
+      const prosthesis = await new ServicesService().update(id, name, lab);
+
+      res.json(prosthesis)
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
   }
 }

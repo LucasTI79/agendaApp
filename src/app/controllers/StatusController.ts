@@ -34,13 +34,24 @@ export default class ProfessionalController {
     try{
       const { id } = req.params;
 
-      const status = await getRepository(StatusProsthesis).findOne(id)
+      const status = await getRepository(StatusProsthesis).findOne({id})
 
       return res.json(status)
     }catch(err){
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }
+  }
+  async update(req: Request, res: Response){
+    try{
+      const { name } = req.body
+      const { id } = req.params as { id: string };
+      const prosthesis = await new StatusProsthesisService().update(name, id);
 
+      res.json({prosthesis})
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
   }
 }

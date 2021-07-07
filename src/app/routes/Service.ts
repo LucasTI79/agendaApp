@@ -7,6 +7,8 @@ const serviceController = new ServiceController();
 
 serviceRouter.get('/', serviceController.index )
 serviceRouter.post('/', serviceController.create )
-// serviceRouter.get('/:id', serviceController. )
+serviceRouter.put('/:id', serviceController.update )
+serviceRouter.get('/:id', serviceController.show )
+
 
 export default serviceRouter

@@ -7,6 +7,7 @@ const labController = new LabController();
 
 labRouter.get('/', labController.index )
 labRouter.post('/', labController.create )
-// labRouter.get('/:id', labController. )
+labRouter.get('/:id', labController.show )
+labRouter.put('/:id', labController.update )
 
 export default labRouter

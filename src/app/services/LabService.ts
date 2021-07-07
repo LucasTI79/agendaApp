@@ -21,4 +21,17 @@ export default class LabService {
     await repository.save(lab);
     return lab
   }
+  async update(id: string, name: string ): Promise<number | undefined > {
+    const repository = getRepository(Lab);
+
+    const labExists = await repository.findOne({ where: { id } });
+
+    if(!labExists) throw new AppError('Lab not exists');
+
+    const lab = await repository.update(id , { name } );
+
+    if(lab.affected === 0) throw new AppError('Lab update error');
+
+    return lab.affected
+  }
 }

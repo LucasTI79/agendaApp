@@ -7,6 +7,7 @@ const professionalController = new ProfessionalController();
 
 professionalRouter.get('/', professionalController.index )
 professionalRouter.post('/', professionalController.create )
-// patientRouter.get('/:id', patientController. )
+professionalRouter.put('/:id', professionalController.update )
+professionalRouter.get('/:id', professionalController.show )
 
 export default professionalRouter

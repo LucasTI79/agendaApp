@@ -21,4 +21,17 @@ export default class StatusProsthesisService {
     await repository.save(statusProsthesis);
     return statusProsthesis
   }
+  async update(name: string, id: string): Promise<number | undefined > {
+    const repository = getRepository(StatusProsthesis);
+
+    const statusExists = await repository.findOne({ where: { id } });
+
+    if(!statusExists) throw new AppError('Status not exists');
+
+    const status = await repository.update({id} , { name });
+
+    if(status.affected === 0) throw new AppError('Status update error');
+
+    return status.affected
+  }
 }

@@ -8,5 +8,7 @@ const planController = new PlanController();
 planRouter.get('/', planController.index )
 planRouter.post('/', planController.create )
 planRouter.get('/:id', planController.show )
+planRouter.put('/:id', planController.update )
+
 
 export default planRouter
