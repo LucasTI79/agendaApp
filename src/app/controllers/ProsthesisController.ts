@@ -13,7 +13,8 @@ export default class ProsthesisController {
   }
   async create(req: Request, res: Response){
     try{
-      const { isbn, patient, professional, service, lab, status, box, region, deliveryDate } = req.body
+      const { isbn, patient, professional, service, lab, status, box, region, DeliveryDate } = req.body
+      console.log(isbn, patient, professional, service, lab, status, box, region, DeliveryDate)
       const prosthesis = await new ProsthesisService().create({
         isbn,
         patient,
@@ -23,7 +24,7 @@ export default class ProsthesisController {
         status,
         box,
         region,
-        deliveryDate
+        DeliveryDate
       });
 
       return res.status(201).send(prosthesis)
@@ -45,7 +46,7 @@ export default class ProsthesisController {
 
    async update(req: Request, res: Response){
      try{
-       const { patient, professional, service, lab, status, box, region, deliveryDate } = req.body
+       const { patient, professional, service, lab, status, box, region, DeliveryDate } = req.body
        const { isbn } = req.params as { isbn: string };
        const prosthesis = await new ProsthesisService().update({
         isbn,
@@ -56,7 +57,7 @@ export default class ProsthesisController {
         status,
         box,
         region,
-        deliveryDate });
+        DeliveryDate });
 
        res.json({prosthesis})
      }catch(err){

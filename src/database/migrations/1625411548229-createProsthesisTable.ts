@@ -29,7 +29,7 @@ export class createProsthesisTable1625411548229 implements MigrationInterface {
                 {
                   name: 'box',
                   type:'int',
-                  isNullable: false,
+                  isNullable: true,
                 },
                 {
                   name: 'DeliveryDate',

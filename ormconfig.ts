@@ -9,10 +9,10 @@ module.exports = {
    "migrationsDir": ["src/database/migrations"],
    "entitiesDir": "src/app/models"
   },
-  "ssl": true,
-  "extra": {
-    "ssl": {
-      "rejectUnauthorized": false
-    }
-  }
+  // "ssl": true,
+  // "extra": {
+  //   "ssl": {
+  //     "rejectUnauthorized": false
+  //   }
+  // }
 }

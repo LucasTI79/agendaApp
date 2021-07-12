@@ -17,17 +17,8 @@ interface ProsthesisInterface {
   status: StatusProsthesis,
   box: number,
   region: string,
-  deliveryDate: string
+  DeliveryDate: Date
 }
-
-// isbn,
-// patient,
-// professional,
-// service,
-// lab,
-// status,
-// box,
-// deliveryDate,
 export default class ProsthesisService {
   async index(){
     const repository = getRepository(Prosthesis);
@@ -69,7 +60,7 @@ export default class ProsthesisService {
   async show(isbn: string){
     const repository = getRepository(Prosthesis);
 
-    const prosthesis = await repository.find({ isbn })
+    const prosthesis = await repository.findOne({ isbn })
 
 
     // const prosthesis = await repository.find({ where: { isbn }, join: {
@@ -83,7 +74,7 @@ export default class ProsthesisService {
     //   }
     // } })
 
-    if(prosthesis.length === 0) throw new AppError('Prosthesis show error');
+    if(!prosthesis) throw new AppError('Prosthesis show error');
 
     return prosthesis
   }

@@ -6,3 +6,6 @@ pgdata/
 .env.local
 .env.production
 yarn-error.log
+scripts.txt
+services.txt
+

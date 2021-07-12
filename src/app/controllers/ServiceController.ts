@@ -4,7 +4,6 @@ import { IError } from '../errors/AppError'
 import Service from '../models/Service'
 import ServicesService from '../services/ServicesService'
 
-
 export default class ProfessionalController {
   async index(req: Request, res: Response) {
     try{

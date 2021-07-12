@@ -23,7 +23,7 @@ class Patient {
   phone: string;
 
   @Column({
-    type: 'date',
+    type: 'timestamptz',
     nullable: true
   })
   birthday: Date;

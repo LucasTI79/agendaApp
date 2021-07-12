@@ -9,7 +9,7 @@ interface IPatient {
   CPF: string,
   email: string,
   phone: string,
-  birthday: number,
+  birthday: Date,
   gender: string,
   plan: Plan
 }

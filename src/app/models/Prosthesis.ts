@@ -83,7 +83,10 @@ export default class Prosthesis {
   @Column()
   region: string;
 
-  @CreateDateColumn()
+  @Column({
+    type: 'timestamptz',
+    nullable: true
+  })
   DeliveryDate: Date;
 
   @CreateDateColumn({ default: () => 'now()' })
