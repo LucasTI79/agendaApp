@@ -14,7 +14,6 @@ export default class ProsthesisController {
   async create(req: Request, res: Response){
     try{
       const { isbn, patient, professional, service, lab, status, box, region, DeliveryDate } = req.body
-      console.log(isbn, patient, professional, service, lab, status, box, region, DeliveryDate)
       const prosthesis = await new ProsthesisService().create({
         isbn,
         patient,
@@ -48,6 +47,7 @@ export default class ProsthesisController {
      try{
        const { patient, professional, service, lab, status, box, region, DeliveryDate } = req.body
        const { isbn } = req.params as { isbn: string };
+
        const prosthesis = await new ProsthesisService().update({
         isbn,
         patient,
