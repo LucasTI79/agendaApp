@@ -28,4 +28,8 @@ router.use('/prosthesis', prosthesisRouter)
 
 router.post('/auth', new AuthController().authenticate )
 
+router.get('/print', async (req, res) => {
+  return res.send('print')
+})
+
 export default router;
