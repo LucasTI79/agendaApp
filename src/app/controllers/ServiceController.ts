@@ -59,7 +59,7 @@ export default class ProfessionalController {
     try{
       const { id } = req.params as { id: string };
       await new ServicesService().delete(id);
-      res.status(204)
+      return res.status(204).send()
     }catch(err){
      let error = err as IError;
      res.status(error.statusCode).json({ error: error.message })

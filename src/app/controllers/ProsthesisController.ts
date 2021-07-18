@@ -69,7 +69,7 @@ export default class ProsthesisController {
     try{
       const { isbn } = req.params as { isbn: string };
       await new ProsthesisService().delete( isbn );
-      res.status(204)
+      return res.status(204).send()
     }catch(err){
      let error = err as IError;
      res.status(error.statusCode).json({ error: error.message })

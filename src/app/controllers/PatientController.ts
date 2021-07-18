@@ -54,7 +54,7 @@ export default class PatientController {
     try{
       const { id } = req.params;
       await new PatientService().delete(id)
-      return res.status(204)
+      return res.status(204).send()
     }catch(err){
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
