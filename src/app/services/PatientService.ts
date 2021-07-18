@@ -39,6 +39,17 @@ class PatientService {
 
     return patient.affected
   }
+
+  async delete( id: string) {
+    const repository = getRepository(Patient);
+
+    const patientExists = await repository.findOne({ where: { id } });
+
+    if(!patientExists) throw new AppError('Patient not exists');
+
+    return await repository.delete(id);
+
+  }
 }
 
 export default PatientService;

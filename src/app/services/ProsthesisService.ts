@@ -62,7 +62,6 @@ export default class ProsthesisService {
 
     const prosthesis = await repository.findOne({ isbn })
 
-
     // const prosthesis = await repository.find({ where: { isbn }, join: {
     //   alias: "prosthesis",
     //   leftJoinAndSelect: {
@@ -78,26 +77,19 @@ export default class ProsthesisService {
 
     return prosthesis
   }
+
+  async delete(isbn: string){
+    const repository = getRepository(Prosthesis);
+
+    const prosthesisExists = await repository.find({ where: { isbn } });
+
+    if(!prosthesisExists) throw new AppError('Prosthesis not exists');
+
+    return await repository.delete({ isbn })
+  }
+
+  async logs(){
+    const repository = getRepository(ProsthesisLog);
+     return repository.find();
+  }
 }
-
-// class ProsthesisService {
-//   async index(){
-//     return await Prosthesis.find();
-//   }
-//   async create(data: ProsthesisInterface ){
-//     return await Prosthesis.create(data);
-//   }
-//   async show(isbn: string){
-//     return await Prosthesis.findOne({ isbn });
-//   }
-//   async update(isbn: string, status: string){
-//     const prosthesis = await Prosthesis.findOneAndUpdate({ isbn },{ $set: {status} }, { new: true })
-
-//     return prosthesis
-//   }
-//   async delete( isbn: string ){
-//     return await Prosthesis.findOneAndRemove({ isbn });
-//   }
-// }
-
-// export default ProsthesisService;

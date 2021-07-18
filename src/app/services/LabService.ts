@@ -34,4 +34,13 @@ export default class LabService {
 
     return lab.affected
   }
+  async delete(id: string ) {
+    const repository = getRepository(Lab);
+
+    const labExists = await repository.findOne({ where: { id } });
+
+    if(!labExists) throw new AppError('Lab not exists');
+
+    return await repository.delete({ id } );
+  }
 }

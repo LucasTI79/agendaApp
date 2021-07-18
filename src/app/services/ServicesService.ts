@@ -34,4 +34,14 @@ export default class ServicesService {
 
     return labdata.affected
   }
+
+  async delete(id: string){
+    const repository = getRepository(Service);
+
+    const labExists = await repository.findOne({ where: { id } });
+
+    if(!labExists) throw new AppError('Service not exists');
+
+    return await repository.delete(id);
+  }
 }

@@ -35,4 +35,14 @@ export default class ProfessionalService {
 
     return professional.affected
   }
+
+  async delete(id: string) {
+    const repository = getRepository(Professional);
+
+    const professionalExists = await repository.findOne({ where: { id } });
+
+    if(!professionalExists) throw new AppError('Professional not exists');
+
+    return await repository.delete({id});
+  }
 }

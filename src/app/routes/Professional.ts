@@ -9,5 +9,6 @@ professionalRouter.get('/', professionalController.index )
 professionalRouter.post('/', professionalController.create )
 professionalRouter.put('/:id', professionalController.update )
 professionalRouter.get('/:id', professionalController.show )
+professionalRouter.delete('/:id', professionalController.delete )
 
 export default professionalRouter

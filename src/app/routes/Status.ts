@@ -9,6 +9,7 @@ statusRouter.get('/', statusController.index )
 statusRouter.post('/', statusController.create )
 statusRouter.get('/:id', statusController.show )
 statusRouter.put('/:id', statusController.update )
+statusRouter.delete('/:id', statusController.delete )
 
 
 export default statusRouter

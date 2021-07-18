@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey, Unique } from "typeorm";
 
 export class createPatientTable1623595984826 implements MigrationInterface {
 
@@ -28,7 +28,8 @@ export class createPatientTable1623595984826 implements MigrationInterface {
                 {
                     name: 'CPF',
                     type: 'varchar',
-                    isNullable: true
+                    isNullable: true,
+                    isUnique: true
                 },
                 {
                     name: 'email',

@@ -65,14 +65,25 @@ export default class ProsthesisController {
       res.status(error.statusCode).json({ error: error.message })
      }
    }
-  //  async delete(req: Request, res: Response){
-  //   try{
-  //     const { isbn } = req.params as { isbn: string };
-  //     const prosthesis = await new ProsthesisService().delete( isbn );
-  //     res.json({prosthesis})
-  //   }catch(err){
-  //    let error = err as IError;
-  //    res.status(error.statusCode).json({ error: error.message })
-  //   }
-  // }
+   async delete(req: Request, res: Response){
+    try{
+      const { isbn } = req.params as { isbn: string };
+      await new ProsthesisService().delete( isbn );
+      res.status(204)
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+
+  async logs(req: Request, res: Response){
+    try{
+      const logs = await new ProsthesisService().logs();
+      res.json(logs)
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+
+  }
 }

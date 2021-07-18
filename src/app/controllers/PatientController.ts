@@ -43,7 +43,18 @@ export default class PatientController {
 
       const professional = await getRepository(Patient).findOne({id})
 
-      return res.json(professional)
+      return res.json({professional})
+    }catch(err){
+      let error = err as IError
+      res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+
+  async delete(req: Request, res: Response) {
+    try{
+      const { id } = req.params;
+      await new PatientService().delete(id)
+      return res.status(204)
     }catch(err){
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })

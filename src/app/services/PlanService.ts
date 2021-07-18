@@ -40,6 +40,15 @@ class PlanService {
 
     return plan.affected
   }
+  async delete(id: string){
+    const repository = getRepository(Plan);
+
+    const planExists = await repository.findOne({ where: { id } });
+
+    if(!planExists) throw new AppError('Plan not exists');
+
+    return await repository.delete({id})
+  }
 }
 
 export default PlanService;

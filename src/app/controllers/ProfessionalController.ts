@@ -55,4 +55,14 @@ export default class ProfessionalController {
      res.status(error.statusCode).json({ error: error.message })
     }
   }
+  async delete(req: Request, res: Response){
+    try{
+      const { id } = req.params as { id: string };
+      await new ProfessionalService().delete(id);
+      res.status(204)
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+  }
 }

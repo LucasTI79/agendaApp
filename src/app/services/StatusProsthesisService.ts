@@ -34,4 +34,15 @@ export default class StatusProsthesisService {
 
     return status.affected
   }
+
+  async delete(id: string) {
+    const repository = getRepository(StatusProsthesis);
+
+    const statusExists = await repository.findOne({ where: { id } });
+
+    if(!statusExists) throw new AppError('Status not exists');
+
+    return await repository.delete({id});
+
+  }
 }

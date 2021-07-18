@@ -9,6 +9,8 @@ patientRouter.get('/', patientController.index)
 patientRouter.post('/', patientController.create)
 patientRouter.put('/:id', patientController.update)
 patientRouter.get('/:id', patientController.show)
+patientRouter.delete('/:id', patientController.delete )
+
 
 export default patientRouter
 

@@ -41,9 +41,19 @@ export default class LabController {
     try{
       const { name } = req.body
       const { id } = req.params as { id: string };
-      await new LabService().update(id, name);
+      const lab = await new LabService().update(id, name);
 
-      res.status(204).send()
+      res.status(200).json({lab})
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+  async delete(req: Request, res: Response){
+    try{
+      const { id } = req.params as { id: string };
+      await new LabService().delete(id);
+      return res.status(204)
     }catch(err){
      let error = err as IError;
      res.status(error.statusCode).json({ error: error.message })
