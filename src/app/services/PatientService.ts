@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, ILike } from "typeorm";
 import { AppError } from "../errors/AppError";
 import Patient from "../models/Patient";
 import Plan from "../models/Plan";
@@ -11,7 +11,7 @@ interface IPatient {
   phone: string,
   birthday: Date,
   gender: string,
-  plan: Plan
+  plan?: Plan
 }
 class PatientService {
   async create(data: IPatient){
@@ -49,6 +49,12 @@ class PatientService {
 
     return await repository.delete(id);
 
+  }
+
+  async search(q: string = ''){
+    const repository = getRepository(Patient);
+    const patients = await repository.find({ name: ILike(`%${q}%`) });
+    return patients
   }
 }
 

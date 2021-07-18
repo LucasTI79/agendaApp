@@ -12,5 +12,6 @@ patientRouter.get('/:id', patientController.show)
 patientRouter.delete('/:id', patientController.delete )
 
 
+
 export default patientRouter
 

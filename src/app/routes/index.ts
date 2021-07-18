@@ -15,6 +15,7 @@ const router = Router();
 
 router.use('/users', userRouter)
 // router.use('/patients', patientRouter)
+router.get('/patients/search', new PatientController().search )
 router.get('/patients', new PatientController().index)
 router.post('/patients', new PatientController().create)
 router.put('/patients/:id', new PatientController().update)

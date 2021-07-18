@@ -12,19 +12,6 @@ export default class PatientController {
     return res.json(patients)
   }
 
-  async update(req: Request, res: Response){
-    try{
-      const { name, RG, CPF, email, phone, birthday, gender, plan } = req.body
-      const { id } = req.params as { id: string };
-      const prosthesis = await new PatientService().update(id, name, RG, CPF, email, phone, birthday, gender, plan);
-
-      return res.json(prosthesis)
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
-    }
-  }
-
   async create(req: Request, res: Response) {
     try{
       const { name, RG, CPF, email, phone, birthday, gender, plan } = req.body
@@ -50,6 +37,19 @@ export default class PatientController {
     }
   }
 
+  async update(req: Request, res: Response){
+    try{
+      const { name, RG, CPF, email, phone, birthday, gender, plan } = req.body
+      const { id } = req.params as { id: string };
+      const prosthesis = await new PatientService().update(id, name, RG, CPF, email, phone, birthday, gender, plan);
+
+      return res.json(prosthesis)
+    }catch(err){
+     let error = err as IError;
+     res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+
   async delete(req: Request, res: Response) {
     try{
       const { id } = req.params;
@@ -57,6 +57,19 @@ export default class PatientController {
       return res.status(204).send()
     }catch(err){
       let error = err as IError
+      res.status(error.statusCode).json({ error: error.message })
+    }
+  }
+
+  async search(req: Request, res: Response){
+    try{
+      const { q } = req.query
+      //@ts-ignore
+      const patients = await new PatientService().search(q)
+      return res.json(patients)
+    }catch(err){
+      let error = err as IError
+      console.log('error',error)
       res.status(error.statusCode).json({ error: error.message })
     }
   }
