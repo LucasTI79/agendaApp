@@ -92,4 +92,6 @@ export default class ProsthesisService {
     const repository = getRepository(ProsthesisLog);
      return repository.find();
   }
+
+
 }

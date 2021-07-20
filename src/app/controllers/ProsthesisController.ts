@@ -75,15 +75,4 @@ export default class ProsthesisController {
      res.status(error.statusCode).json({ error: error.message })
     }
   }
-
-  async logs(req: Request, res: Response){
-    try{
-      const logs = await new ProsthesisService().logs();
-      res.json(logs)
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
-    }
-
-  }
 }
