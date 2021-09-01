@@ -17,7 +17,7 @@ interface ProsthesisInterface {
   status: StatusProsthesis,
   box: number,
   region: string,
-  DeliveryDate: Date
+  deliveryDate: Date
 }
 export default class ProsthesisService {
   async index(){
@@ -92,6 +92,4 @@ export default class ProsthesisService {
     const repository = getRepository(ProsthesisLog);
      return repository.find();
   }
-
-
 }

@@ -16,7 +16,7 @@ interface ProsthesisInterface {
   status: StatusProsthesis,
   box: number,
   region: string,
-  DeliveryDate: Date
+  deliveryDate: Date
 }
 
 export default class ProsthesisLogsService {

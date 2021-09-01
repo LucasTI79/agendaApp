@@ -87,7 +87,7 @@ export default class ProsthesisLog {
     type: 'timestamptz',
     nullable: true
   })
-  DeliveryDate: Date;
+  deliveryDate: Date;
 
   @CreateDateColumn({ default: () => 'now()' })
   readonly createdAt: Date;

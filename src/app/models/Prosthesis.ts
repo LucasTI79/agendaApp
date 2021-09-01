@@ -43,7 +43,7 @@ export default class Prosthesis {
     type: 'timestamptz',
     nullable: true
   })
-  DeliveryDate: Date;
+  deliveryDate: Date;
 
   @CreateDateColumn({ default: () => 'now()' })
   readonly createdAt: Date;

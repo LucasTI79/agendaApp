@@ -8,7 +8,7 @@ export default class LabService {
 
     const labs = await repository.find();
 
-    return labs
+    return labs;
   }
   async create(name: string): Promise<Lab> {
     const repository = getRepository(Lab);
@@ -19,7 +19,7 @@ export default class LabService {
 
     const lab = repository.create({ name });
     await repository.save(lab);
-    return lab
+    return lab;
   }
   async update(id: string, name: string ): Promise<number | undefined > {
     const repository = getRepository(Lab);
@@ -32,7 +32,7 @@ export default class LabService {
 
     if(lab.affected === 0) throw new AppError('Lab update error');
 
-    return lab.affected
+    return lab.affected;
   }
   async delete(id: string ) {
     const repository = getRepository(Lab);

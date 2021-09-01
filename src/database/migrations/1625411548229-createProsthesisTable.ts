@@ -32,7 +32,7 @@ export class createProsthesisTable1625411548229 implements MigrationInterface {
                   isNullable: true,
                 },
                 {
-                  name: 'DeliveryDate',
+                  name: 'deliveryDate',
                   type: 'timestamptz',
                   isNullable: true
                 },
