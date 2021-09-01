@@ -7,16 +7,16 @@ interface TokenPayload {
   exp: number;
 }
 
-export default function authMiddleware(req: Request, res: Response, next: NextFunction){
+export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const { authorization } = req.headers;
 
-  if(!authorization){
+  if (!authorization) {
     return res.sendStatus(401);
   }
 
   const token = authorization.replace('Bearer', '').trim();
 
-  try{
+  try {
     const data = jwt.verify(token, 'secret');
 
     const { id } = data as TokenPayload
@@ -24,8 +24,8 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     req.userId = id
 
     return next();
-    
-  }catch{
+
+  } catch {
     return res.sendStatus(401);
   }
 }

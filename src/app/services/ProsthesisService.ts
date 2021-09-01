@@ -20,7 +20,7 @@ interface ProsthesisInterface {
   deliveryDate: Date
 }
 export default class ProsthesisService {
-  async index(){
+  async index() {
     const repository = getRepository(Prosthesis);
 
     const prosthesis = await repository.find()
@@ -28,12 +28,13 @@ export default class ProsthesisService {
     return prosthesis
   }
   async create(data: ProsthesisInterface): Promise<Prosthesis> {
+
     const repository = getRepository(Prosthesis);
     const repositoryLog = getRepository(ProsthesisLog);
 
     const prosthesisExists = await repository.findOne({ where: { isbn: data.isbn } });
 
-    if(prosthesisExists) throw new AppError('Prosthesis isbn already exists');
+    if (prosthesisExists) throw new AppError('Prosthesis isbn already exists');
 
     const prosthesis = repository.create(data);
     const prosthesisLog = repositoryLog.create(data);
@@ -43,13 +44,13 @@ export default class ProsthesisService {
     return prosthesis
   }
 
-  async update(data: ProsthesisInterface): Promise<number | undefined > {
+  async update(data: ProsthesisInterface): Promise<number | undefined> {
     const repository = getRepository(Prosthesis);
     const repositoryLog = getRepository(ProsthesisLog);
 
     const prosthesis = await repository.update({ isbn: data.isbn }, { patient: data.patient, lab: data.lab, professional: data.professional, service: data.service, status: data.status });
 
-    if(prosthesis.affected === 0) throw new AppError('Prosthesis update error');
+    if (prosthesis.affected === 0) throw new AppError('Prosthesis update error');
 
     const prosthesisLog = repositoryLog.create(data);
     await repositoryLog.save(prosthesisLog);
@@ -57,7 +58,7 @@ export default class ProsthesisService {
     return prosthesis.affected
   }
 
-  async show(isbn: string){
+  async show(isbn: string) {
     const repository = getRepository(Prosthesis);
 
     const prosthesis = await repository.findOne({ isbn })
@@ -73,23 +74,23 @@ export default class ProsthesisService {
     //   }
     // } })
 
-    if(!prosthesis) throw new AppError('Prosthesis show error');
+    if (!prosthesis) throw new AppError('Prosthesis show error');
 
     return prosthesis
   }
 
-  async delete(isbn: string){
+  async delete(isbn: string) {
     const repository = getRepository(Prosthesis);
 
     const prosthesisExists = await repository.find({ where: { isbn } });
 
-    if(!prosthesisExists) throw new AppError('Prosthesis not exists');
+    if (!prosthesisExists) throw new AppError('Prosthesis not exists');
 
     return await repository.delete({ isbn })
   }
 
-  async logs(){
+  async logs() {
     const repository = getRepository(ProsthesisLog);
-     return repository.find();
+    return repository.find();
   }
 }

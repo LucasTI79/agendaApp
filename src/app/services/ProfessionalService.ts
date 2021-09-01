@@ -3,7 +3,7 @@ import { AppError } from '../errors/AppError';
 import Professional from '../models/Professional';
 
 export default class ProfessionalService {
-  async index(){
+  async index() {
     const repository = getRepository(Professional);
 
     const professional = await repository.find();
@@ -15,23 +15,23 @@ export default class ProfessionalService {
 
     const professionalExists = await repository.findOne({ where: { name } });
 
-    if(professionalExists) throw new AppError('Professional already exists');
+    if (professionalExists) throw new AppError('Professional already exists');
 
     const professional = repository.create({ name });
     await repository.save(professional);
     return professional
   }
 
-  async update(name: string, id: string): Promise<number | undefined > {
+  async update(name: string, id: string): Promise<number | undefined> {
     const repository = getRepository(Professional);
 
     const professionalExists = await repository.findOne({ where: { id } });
 
-    if(!professionalExists) throw new AppError('Professional not exists');
+    if (!professionalExists) throw new AppError('Professional not exists');
 
-    const professional = await repository.update({id} , { name });
+    const professional = await repository.update({ id }, { name });
 
-    if(professional.affected === 0) throw new AppError('Professional update error');
+    if (professional.affected === 0) throw new AppError('Professional update error');
 
     return professional.affected
   }
@@ -41,8 +41,8 @@ export default class ProfessionalService {
 
     const professionalExists = await repository.findOne({ where: { id } });
 
-    if(!professionalExists) throw new AppError('Professional not exists');
+    if (!professionalExists) throw new AppError('Professional not exists');
 
-    return await repository.delete({id});
+    return await repository.delete({ id });
   }
 }

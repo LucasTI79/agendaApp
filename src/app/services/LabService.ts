@@ -3,7 +3,7 @@ import { AppError } from '../errors/AppError';
 import Lab from '../models/Lab';
 
 export default class LabService {
-  async index(){
+  async index() {
     const repository = getRepository(Lab);
 
     const labs = await repository.find();
@@ -15,32 +15,32 @@ export default class LabService {
 
     const labExists = await repository.findOne({ where: { name } });
 
-    if(labExists) throw new AppError('Lab already exists');
+    if (labExists) throw new AppError('Lab already exists');
 
     const lab = repository.create({ name });
     await repository.save(lab);
     return lab;
   }
-  async update(id: string, name: string ): Promise<number | undefined > {
+  async update(id: string, name: string): Promise<number | undefined> {
     const repository = getRepository(Lab);
 
     const labExists = await repository.findOne({ where: { id } });
 
-    if(!labExists) throw new AppError('Lab not exists');
+    if (!labExists) throw new AppError('Lab not exists');
 
-    const lab = await repository.update(id , { name } );
+    const lab = await repository.update(id, { name });
 
-    if(lab.affected === 0) throw new AppError('Lab update error');
+    if (lab.affected === 0) throw new AppError('Lab update error');
 
     return lab.affected;
   }
-  async delete(id: string ) {
+  async delete(id: string) {
     const repository = getRepository(Lab);
 
     const labExists = await repository.findOne({ where: { id } });
 
-    if(!labExists) throw new AppError('Lab not exists');
+    if (!labExists) throw new AppError('Lab not exists');
 
-    return await repository.delete({ id } );
+    return await repository.delete({ id });
   }
 }

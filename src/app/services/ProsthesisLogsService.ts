@@ -20,23 +20,23 @@ interface ProsthesisInterface {
 }
 
 export default class ProsthesisLogsService {
-  async index(){
+  async index() {
     const repository = getRepository(ProsthesisLog);
-     return repository.find();
+    return repository.find();
   }
 
 
-  async showByIsbn(isbn: string){
+  async showByIsbn(isbn: string) {
     const repository = getRepository(ProsthesisLog);
 
     const prosthesis = await repository.find({ isbn })
 
-    if(!prosthesis) throw new AppError('Prosthesis show error');
+    if (!prosthesis) throw new AppError('Prosthesis show error');
 
     return prosthesis
   }
 
-  async showByStatus(statusName: string){
+  async showByStatus(statusName: string) {
     const repository = getRepository(ProsthesisLog);
 
     const statusRepostory = getRepository(StatusProsthesis);
@@ -45,7 +45,7 @@ export default class ProsthesisLogsService {
 
     const prosthesis = await repository.find({ status })
 
-    if(!prosthesis) throw new AppError('Prosthesis show error');
+    if (!prosthesis) throw new AppError('Prosthesis show error');
 
     return prosthesis
   }

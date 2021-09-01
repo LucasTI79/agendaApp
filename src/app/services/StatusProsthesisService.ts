@@ -3,7 +3,7 @@ import { AppError } from '../errors/AppError';
 import StatusProsthesis from '../models/StatusProsthesis';
 
 export default class StatusProsthesisService {
-  async index(){
+  async index() {
     const repository = getRepository(StatusProsthesis);
 
     const statusProsthesis = await repository.find();
@@ -15,22 +15,22 @@ export default class StatusProsthesisService {
 
     const StatusProsthesisExists = await repository.findOne({ where: { name } });
 
-    if(StatusProsthesisExists) throw new AppError('Status already exists');
+    if (StatusProsthesisExists) throw new AppError('Status already exists');
 
-    const statusProsthesis = repository.create({name});
+    const statusProsthesis = repository.create({ name });
     await repository.save(statusProsthesis);
     return statusProsthesis
   }
-  async update(name: string, id: string): Promise<number | undefined > {
+  async update(name: string, id: string): Promise<number | undefined> {
     const repository = getRepository(StatusProsthesis);
 
     const statusExists = await repository.findOne({ where: { id } });
 
-    if(!statusExists) throw new AppError('Status not exists');
+    if (!statusExists) throw new AppError('Status not exists');
 
-    const status = await repository.update({id} , { name });
+    const status = await repository.update({ id }, { name });
 
-    if(status.affected === 0) throw new AppError('Status update error');
+    if (status.affected === 0) throw new AppError('Status update error');
 
     return status.affected
   }
@@ -40,9 +40,9 @@ export default class StatusProsthesisService {
 
     const statusExists = await repository.findOne({ where: { id } });
 
-    if(!statusExists) throw new AppError('Status not exists');
+    if (!statusExists) throw new AppError('Status not exists');
 
-    return await repository.delete({id});
+    return await repository.delete({ id });
 
   }
 }

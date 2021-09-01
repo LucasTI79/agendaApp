@@ -9,7 +9,7 @@ interface IPlan {
   defaultPlan: boolean
 }
 class PlanService {
-  async index(){
+  async index() {
     const repository = getRepository(Plan);
 
     const plans = await repository.find();
@@ -21,33 +21,33 @@ class PlanService {
 
     const planExists = await repository.findOne({ where: { name } });
 
-    if(planExists) throw new AppError('Plan already exists');
+    if (planExists) throw new AppError('Plan already exists');
 
     const plan = repository.create({ name, active, defaultPlan });
     await repository.save(plan);
     return plan
   }
-  async update(id: string, name: string, active: boolean = true, defaultPlan: boolean = false ): Promise<number | undefined > {
+  async update(id: string, name: string, active: boolean = true, defaultPlan: boolean = false): Promise<number | undefined> {
     const repository = getRepository(Plan);
 
     const planExists = await repository.findOne({ where: { id } });
 
-    if(!planExists) throw new AppError('Plan not exists');
+    if (!planExists) throw new AppError('Plan not exists');
 
-    const plan = await repository.update(id , { name, active, defaultPlan } );
+    const plan = await repository.update(id, { name, active, defaultPlan });
 
-    if(plan.affected === 0) throw new AppError('Plan update error');
+    if (plan.affected === 0) throw new AppError('Plan update error');
 
     return plan.affected
   }
-  async delete(id: string){
+  async delete(id: string) {
     const repository = getRepository(Plan);
 
     const planExists = await repository.findOne({ where: { id } });
 
-    if(!planExists) throw new AppError('Plan not exists');
+    if (!planExists) throw new AppError('Plan not exists');
 
-    return await repository.delete({id})
+    return await repository.delete({ id })
   }
 }
 

@@ -5,6 +5,6 @@ import './database/connection';
 
 dotenv.config();
 
-app.listen(app.get('port') , () => {
+app.listen(app.get('port'), () => {
   console.log(`🏃 Running Server in ${app.get('port')}`);
 });

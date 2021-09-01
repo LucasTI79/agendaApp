@@ -13,19 +13,19 @@ interface IUser {
 }
 
 class AuthController {
-  async authenticate(req: Request, res: Response){
+  async authenticate(req: Request, res: Response) {
     const repository = getRepository(User);
     const { email, password } = req.body;
 
     const user = await repository.findOne({ where: { email } });
 
-    if(!user){
+    if (!user) {
       return res.sendStatus(401).json({ message: 'USER NOT EXISTS' });
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password );
+    const isValidPassword = await bcrypt.compare(password, user.password);
 
-    if(!isValidPassword){
+    if (!isValidPassword) {
       return res.sendStatus(401).json({ message: 'INVALID PASSWORD' })
     }
 

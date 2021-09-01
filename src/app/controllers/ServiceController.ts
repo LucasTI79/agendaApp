@@ -6,63 +6,63 @@ import ServicesService from '../services/ServicesService'
 
 export default class ProfessionalController {
   async index(req: Request, res: Response) {
-    try{
+    try {
       const services = await new ServicesService().index()
 
       return res.json(services)
-    }catch(err){
-      console.log('err',err)
+    } catch (err) {
+      console.log('err', err)
       let error = err as IError
       res.status(400).json({ error: error.message })
     }
   }
 
-  async create(req: Request, res: Response){
-    try{
+  async create(req: Request, res: Response) {
+    try {
       const { name, lab } = req.body;
 
       const service = await new ServicesService().create(name, lab)
 
       return res.json(service);
-    }catch(err){
-      console.log('err',err)
+    } catch (err) {
+      console.log('err', err)
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }
   }
   async show(req: Request, res: Response) {
-    try{
+    try {
       const { id } = req.params;
 
-      const service = await getRepository(Service).findOne({id})
+      const service = await getRepository(Service).findOne({ id })
 
       return res.json(service)
-    }catch(err){
+    } catch (err) {
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }
 
   }
-  async update(req: Request, res: Response){
-    try{
+  async update(req: Request, res: Response) {
+    try {
       const { name, lab } = req.body;
       const { id } = req.params as { id: string };
       const prosthesis = await new ServicesService().update(id, name, lab);
 
-      res.json({prosthesis})
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
+      res.json({ prosthesis })
+    } catch (err) {
+      let error = err as IError;
+      res.status(error.statusCode).json({ error: error.message })
     }
   }
-  async delete(req: Request, res: Response){
-    try{
+  async delete(req: Request, res: Response) {
+    try {
       const { id } = req.params as { id: string };
       await new ServicesService().delete(id);
       return res.status(204).send()
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
+    } catch (err) {
+      let error = err as IError;
+      res.status(error.statusCode).json({ error: error.message })
     }
   }
 }

@@ -3,7 +3,7 @@ export interface IError {
   statusCode: number;
 }
 
-export class AppError implements IError  {
+export class AppError implements IError {
   public readonly message: string;
   public readonly statusCode: number;
 

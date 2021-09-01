@@ -13,11 +13,11 @@ export default class LabController {
   }
 
   async create(req: Request, res: Response) {
-    try{
+    try {
       const { name } = req.body
-      const lab = await new LabService().create( name )
+      const lab = await new LabService().create(name)
       return res.json(lab)
-    }catch(err){
+    } catch (err) {
       let error = err as IError;
       console.log('err', err)
       return res.status(error.statusCode).json({ error: error.message })
@@ -25,38 +25,38 @@ export default class LabController {
   }
 
   async show(req: Request, res: Response) {
-    try{
+    try {
       const { id } = req.params;
 
-      const plan = await getRepository(Lab).findOne({id})
+      const plan = await getRepository(Lab).findOne({ id })
 
       return res.json(plan)
-    }catch(err){
+    } catch (err) {
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
     }
   }
 
-  async update(req: Request, res: Response){
-    try{
+  async update(req: Request, res: Response) {
+    try {
       const { name } = req.body
       const { id } = req.params as { id: string };
       const lab = await new LabService().update(id, name);
 
-      res.status(200).json({lab})
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
+      res.status(200).json({ lab })
+    } catch (err) {
+      let error = err as IError;
+      res.status(error.statusCode).json({ error: error.message })
     }
   }
-  async delete(req: Request, res: Response){
-    try{
+  async delete(req: Request, res: Response) {
+    try {
       const { id } = req.params as { id: string };
       await new LabService().delete(id);
       return res.status(204).send()
-    }catch(err){
-     let error = err as IError;
-     res.status(error.statusCode).json({ error: error.message })
+    } catch (err) {
+      let error = err as IError;
+      res.status(error.statusCode).json({ error: error.message })
     }
   }
 }

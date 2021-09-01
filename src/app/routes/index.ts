@@ -10,12 +10,13 @@ import labRouter from "./Lab";
 import serviceRouter from "./Service";
 import userRouter from "./User";
 import PatientController from "../controllers/PatientController";
+import clinicRouter from "./Clinic";
 
 const router = Router();
 
 router.use('/users', userRouter)
 // router.use('/patients', patientRouter)
-router.get('/patients/search', new PatientController().search )
+router.get('/patients/search', new PatientController().search)
 router.get('/patients', new PatientController().index)
 router.post('/patients', new PatientController().create)
 router.put('/patients/:id', new PatientController().update)
@@ -26,8 +27,9 @@ router.use('/labs', labRouter)
 router.use('/services', serviceRouter)
 router.use('/status', statusRouter)
 router.use('/prosthesis', prosthesisRouter)
+router.use('/clinics', clinicRouter)
 
-router.post('/auth', new AuthController().authenticate )
+router.post('/auth', new AuthController().authenticate)
 
 router.get('/print', async (req, res) => {
   return res.send('print')

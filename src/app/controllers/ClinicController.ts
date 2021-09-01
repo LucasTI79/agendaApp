@@ -1,16 +1,15 @@
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import { IError } from '../errors/AppError'
-import Plan from '../models/Plan'
-import PlanService from '../services/PlanService'
+import Clinic from '../models/Clinic'
+import ClinicService from '../services/ClinicService'
 
-
-export default class PlanController {
+export default class ClinicController {
   async index(req: Request, res: Response) {
     try {
-      const plans = await new PlanService().index()
+      const clinics = await new ClinicService().index()
 
-      return res.json(plans)
+      return res.json(clinics)
     } catch (err) {
       console.log('err', err)
       let error = err as IError
@@ -20,11 +19,11 @@ export default class PlanController {
 
   async create(req: Request, res: Response) {
     try {
-      const { name, active, defaultPlan } = req.body;
+      const { name, CNPJ } = req.body;
 
-      const plan = await new PlanService().create(name, active, defaultPlan)
+      const clinic = await new ClinicService().create(name)
 
-      return res.json(plan);
+      return res.json(clinic);
     } catch (err) {
       console.log('err', err)
       let error = err as IError
@@ -35,9 +34,9 @@ export default class PlanController {
     try {
       const { id } = req.params;
 
-      const plan = await getRepository(Plan).findOne({ id })
+      const clinic = await getRepository(Clinic).findOne({ id })
 
-      return res.json(plan)
+      return res.json(clinic)
     } catch (err) {
       let error = err as IError
       res.status(error.statusCode).json({ error: error.message })
@@ -46,11 +45,11 @@ export default class PlanController {
 
   async update(req: Request, res: Response) {
     try {
-      const { name, active, defaultPlan } = req.body
+      const { name, CNPJ } = req.body
       const { id } = req.params as { id: string };
-      const prosthesis = await new PlanService().update(id, name, active, defaultPlan);
+      const clinic = await new ClinicService().update(id, name);
 
-      res.json({ prosthesis })
+      res.json({ clinic })
     } catch (err) {
       let error = err as IError;
       res.status(error.statusCode).json({ error: error.message })
@@ -59,7 +58,7 @@ export default class PlanController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params as { id: string };
-      await new PlanService().delete(id);
+      await new ClinicService().delete(id);
       return res.status(204).send()
     } catch (err) {
       let error = err as IError;

@@ -4,10 +4,11 @@ import routes from './app/routes/';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.set('port', process.env.PORT || 3333);
 app.use(express.json());
-//@ts-ignore
 app.use(routes);
 
 export default app;
