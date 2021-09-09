@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
+import Appointment from './Appointments';
 import Clinic from './Clinic';
 import Prosthesis from './Prosthesis';
 
@@ -12,6 +13,9 @@ export default class Professional {
 
   @OneToMany(type => Prosthesis, prosthesis => prosthesis)
   prosthesis: Prosthesis[];
+
+  @OneToMany(() => Appointment, appointment => appointment)
+  appointment: Appointment[];
 
   @JoinColumn({ name: 'clinic_id' })
   @ManyToOne(() => Clinic, clinic => clinic.professionals, { eager: true })

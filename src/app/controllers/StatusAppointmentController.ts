@@ -4,7 +4,7 @@ import { IError } from '../errors/AppError'
 import StatusProsthesis from '../models/StatusProsthesis'
 import StatusProsthesisService from '../services/StatusProsthesisService'
 
-export default class ProfessionalController {
+export default class StatusAppointmentController {
   async index(req: Request, res: Response) {
     try {
       const status = await new StatusProsthesisService().index()

@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import Appointment from "./Appointments";
 import Plan from "./Plan";
 import Prosthesis from "./Prosthesis";
 
@@ -37,6 +38,9 @@ class Patient {
 
   @OneToMany(() => Prosthesis, prosthesis => prosthesis)
   prosthesis: Prosthesis[];
+
+  @OneToMany(() => Appointment, appointment => appointment)
+  appointment: Appointment[];
 
   @CreateDateColumn({ default: () => 'now()' })
   readonly createdAt: Date;

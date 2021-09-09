@@ -5,7 +5,8 @@ import planRouter from "./Plan";
 import professionalRouter from "./Professional";
 import prosthesisRouter from "./Prosthesis";
 import patientRouter from "./Auth";
-import statusRouter from "./Status";
+import statusProsthesisRouter from "./StatusProstheis";
+import statusAppointmentRouter from "./StatusAppointment";
 import labRouter from "./Lab";
 import serviceRouter from "./Service";
 import userRouter from "./User";
@@ -25,7 +26,8 @@ router.use('/professional', professionalRouter)
 router.use('/plans', planRouter)
 router.use('/labs', labRouter)
 router.use('/services', serviceRouter)
-router.use('/status', statusRouter)
+router.use('/prosthesis/status', statusProsthesisRouter)
+router.use('/appointment/status', statusAppointmentRouter)
 router.use('/prosthesis', prosthesisRouter)
 router.use('/clinics', clinicRouter)
 
